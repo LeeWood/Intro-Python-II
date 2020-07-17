@@ -46,6 +46,7 @@ player1 = Player('Link', room['outside'])
 
 #print(room['outside'].n_to)
 
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -64,31 +65,31 @@ def adventureGameStart():
     #* here if user goes in any direction other than north, print error message..."Are you sure?"
 
     while True:
-        move = input('Which direction do you want to go? \n [N] North  [S] South  [E] East  [W] West  [Q] Quit \n :')
+        move = input('Which direction do you want to go? \n[N] North  [S] South  [E] East  [W] West  [Q] Quit \n :').upper()
         #* need to chage this so that user input is NOT case sensitive
 
-        if move == "N":
+        if move == "N" and hasattr(player1.current_room, 'n_to'):
             player1.current_room = player1.current_room.n_to
             print(f'\n{player1.current_room} \n')
 
-        elif move == "S":
+        elif move == "S" and hasattr(player1.current_room, 's_to'):
             player1.current_room = player1.current_room.s_to
             print(f'\n{player1.current_room} \n')
 
-        elif move == "E":
+        elif move == "E" and hasattr(player1.current_room, 'e_to'):
             player1.current_room = player1.current_room.e_to
             print(f'\n{player1.current_room} \n')
 
-        elif move == "W":
+        elif move == "W" and hasattr(player1.current_room, 'w_to'):
             player1.current_room = player1.current_room.w_to
             print(f'\n{player1.current_room} \n')
 
         elif move == "Q":
-            print("Game over!")
+            print(f'\nAdventure over!')
             break
 
         else:
-            print("Please make a valid selection.")
+            print(f'\nThere is nothing here. Try going a different direction.')
 
         #* I need error handling for if there is no option to go a certain direction based on the player's current position.    
 
