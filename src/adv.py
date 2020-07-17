@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from items import Item
+from item import Item
 
 # Declare all the rooms
 
@@ -41,9 +41,9 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player1 = Player('Link', room['outside'])
+player1 = Player('Link', room['outside'], [Item("Note", "Tattered note that reads:\n 'Seek gold in the northern caves'.")])
 
-#print(player1.current_room)
+#print(player1)
 
 #print(room['outside'].n_to)
 
@@ -59,14 +59,14 @@ player1 = Player('Link', room['outside'])
 #
 # If the user enters "q", quit the game.
 
-def adventureGameStart():
-    #welcome message
-    print(f'Welcome, {player1.name}!')
-    print(f'This is the beginning of your greatest feat yet! {player1.current_room.description}...how will you begin your adventure?')
-    #* here if user goes in any direction other than north, print error message..."Are you sure?"
+def adventureGame():
+    #WELCOME MESSAGE
+    print(f'\nWelcome, {player1.name}!')
+    print(f'This is the beginning of your greatest feat yet! {player1.current_room.description}...how will you begin your adventure?\n')
 
+    #GAME LOOP START
     while True:
-        move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West  [Q] Quit \n :').upper()
+        move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West [I] See Inventory  [Q] Quit \n :').upper()
         #* need to chage this so that user input is NOT case sensitive
 
         if move == "N" and hasattr(player1.current_room, 'n_to'):
@@ -85,6 +85,9 @@ def adventureGameStart():
             player1.current_room = player1.current_room.w_to
             print(f'\n{player1.current_room} \n')
 
+        elif move == "I":
+            print(f"\nInventory:\n{player1.get_items()}\n")    
+
         elif move == "Q":
             print(f'\nAdventure over!')
             break
@@ -92,9 +95,7 @@ def adventureGameStart():
         else:
             print(f"\nYou can't go this way. Try going a different direction.")
 
-        #* I need error handling for if there is no option to go a certain direction based on the player's current position.    
-
-            
-
-adventureGameStart()    
+           
+# GAME START
+adventureGame()    
 
