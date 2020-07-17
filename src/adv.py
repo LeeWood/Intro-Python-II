@@ -69,19 +69,19 @@ def adventureGameStart():
 
         if move == "N":
             player1.current_room = player1.current_room.n_to
-            print(player1.current_room)
+            print(f'\n{player1.current_room} \n')
 
         elif move == "S":
             player1.current_room = player1.current_room.s_to
-            print(player1.current_room)
+            print(f'\n{player1.current_room} \n')
 
         elif move == "E":
             player1.current_room = player1.current_room.e_to
-            print(player1.current_room)
+            print(f'\n{player1.current_room} \n')
 
         elif move == "W":
             player1.current_room = player1.current_room.w_to
-            print(player1.current_room)
+            print(f'\n{player1.current_room} \n')
 
         elif move == "Q":
             print("Game over!")
