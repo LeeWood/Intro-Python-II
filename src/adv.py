@@ -86,10 +86,7 @@ def adventureGame():
             print(f'\n{player1.current_room} \n')
 
         elif move == "I":
-            print(f"\nInventory:\n{player1.get_inventory()}\n")  
-
-        elif move == "T":
-            player1.      
+            print(f"\nInventory:\n{player1.get_inventory()}\n")        
 
         elif move == "Q":
             print(f'\nAdventure over!')
