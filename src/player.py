@@ -13,7 +13,7 @@ class Player:
     def get_item(self, item):
         from item import Item
         
-        if item:
+        if item == item.name:
             self.items.append(Item(item.name, item.description)) 
             item.on_take()   
 

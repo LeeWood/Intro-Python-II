@@ -23,6 +23,15 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", []),
 }
 
+#items dictionary
+items = {
+    "note": Item("a note", "Left by the previous adventurers. The note reads: We may have taken this treasure, but if you can defeat the beast across the Grand Overlook you will be rewarded greatly."),
+
+    "plank": Item("a wooden plank", "A narrow but sturdy wooden plank."),
+
+    "talisman": Item("a Nazar amulet", "A blue and white eye shaped amulet thought to protect against the evil eye.")
+}
+
 
 # Link rooms together
 
@@ -41,7 +50,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player1 = Player('Link', room['outside'], [Item("Note", "Tattered note that reads:\n 'Seek gold in the northern caves'.")])
+player1 = Player('Link', room['outside'], [Item("a journal page", "An old withered page from your great aunt's journal that reads:\n 'Seek gold in the northern caves'.")])
 
 #print(player1)
 
@@ -66,7 +75,7 @@ def adventureGame():
 
     #GAME LOOP START
     while True:
-        move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West  [T] Take Item  [D] Drop Item  [I] See Inventory  [Q] Quit \n :').upper()
+        move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West  [Take + item] Take Item  [Drop + item] Drop Item  [I] See Inventory  [Q] Quit \n :').upper()
         #* need to chage this so that user input is NOT case sensitive
 
         if move == "N" and hasattr(player1.current_room, 'n_to'):
