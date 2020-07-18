@@ -9,7 +9,7 @@ room = {
                      "North of you, the cave mount beckons", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", []),
+passages run north and east.""", [Item("bees", "You DIE...because you're allergic")]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
@@ -66,7 +66,7 @@ def adventureGame():
 
     #GAME LOOP START
     while True:
-        move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West [I] See Inventory  [Q] Quit \n :').upper()
+        move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West  [T] Take Item  [D] Drop Item  [I] See Inventory  [Q] Quit \n :').upper()
         #* need to chage this so that user input is NOT case sensitive
 
         if move == "N" and hasattr(player1.current_room, 'n_to'):
@@ -86,7 +86,10 @@ def adventureGame():
             print(f'\n{player1.current_room} \n')
 
         elif move == "I":
-            print(f"\nInventory:\n{player1.get_items()}\n")    
+            print(f"\nInventory:\n{player1.get_inventory()}\n")  
+
+        elif move == "T":
+            player1.      
 
         elif move == "Q":
             print(f'\nAdventure over!')
