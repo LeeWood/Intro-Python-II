@@ -1,3 +1,5 @@
+from item import Item
+
 class Player:
     def __init__(self, name, current_room, items=[]):
         self.name = name
@@ -13,13 +15,18 @@ class Player:
             i += 1
         return output    
         # * maybe add incrementing numbers to this later
-
+    
+    #adds item to player item list
     def get_item(self, item):
-        from item import Item
-
         self.current_room.items.remove(item)
         self.items.append(item) 
         item.on_take() 
+
+    #removes item to player item list
+    def drop_item(self, item):
+        self.current_room.items.append(item)
+        self.items.remove(item)
+        item.on_drop()        
             
     def __str__(self):
         return f'{self.name}, {self.current_room}'

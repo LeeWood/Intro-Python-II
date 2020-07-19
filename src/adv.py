@@ -71,6 +71,7 @@ def adventureGame():
     while True:
         move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West  [Take + item] Take Item  [Drop + item] Drop Item  [I] See Inventory  [Q] Quit \n :').lower()
 
+        #Checks if use is entering one or two words in input
         def isSingleStr(str):
             return len(str.split()) < 2
 
@@ -90,7 +91,6 @@ def adventureGame():
             player1.current_room = player1.current_room.w_to
             print(f'\n{player1.current_room} \n')
 
-
         elif move == "i" and isSingleStr(move):
             print(f"\nInventory:\n{player1.get_inventory()}\n")        
 
@@ -102,7 +102,13 @@ def adventureGame():
             try:
                 player1.get_item(roomItems[move.split()[1]])
             except KeyError:
-                print("that item is not in this area")    
+                print("that item is not in this area")  
+
+        elif move.startswith("drop".lower()):
+            try:
+                player1.drop_item(roomItems[move.split()[1]])
+            except KeyError:
+                print("You don't have this item in your inventory.")              
 
         else:
             print(f"\nYou can't go this way. Try going a different direction.")
