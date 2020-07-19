@@ -69,39 +69,41 @@ def adventureGame():
 
     #GAME LOOP START
     while True:
-        move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West  [Take + item] Take Item  [Drop + item] Drop Item  [I] See Inventory  [Q] Quit \n :').upper()
-        #* need to chage this so that user input is NOT case sensitive
+        move = input('What would you like to do? \n[N] Go North  [S] Go South  [E] Go East  [W] Go West  [Take + item] Take Item  [Drop + item] Drop Item  [I] See Inventory  [Q] Quit \n :').lower()
 
-        if move == "N" and hasattr(player1.current_room, 'n_to'):
+        def isSingleStr(str):
+            return len(str.split()) < 2
+
+        if move == "n" and isSingleStr(move) and hasattr and (player1.current_room, 'n_to'):
             player1.current_room = player1.current_room.n_to
             print(f'\n{player1.current_room} \n')
 
-        elif move == "S" and hasattr(player1.current_room, 's_to'):
+        elif move == "s" and isSingleStr(move) and hasattr:
             player1.current_room = player1.current_room.s_to
             print(f'\n{player1.current_room} \n')
 
-        elif move == "E" and hasattr(player1.current_room, 'e_to'):
+        elif move == "e" and isSingleStr(move) and hasattr:
             player1.current_room = player1.current_room.e_to
             print(f'\n{player1.current_room} \n')
 
-        elif move == "W" and hasattr(player1.current_room, 'w_to'):
+        elif move == "w" and isSingleStr(move) and hasattr:
             player1.current_room = player1.current_room.w_to
             print(f'\n{player1.current_room} \n')
 
-        elif move == "T":
-            player1.get_item(roomItems["note"])
 
-        elif move == "I":
+        elif move == "i" and isSingleStr(move):
             print(f"\nInventory:\n{player1.get_inventory()}\n")        
 
-        elif move == "Q":
+        elif move == "q" and isSingleStr(move):
             print(f'\nAdventure over!')
             break
+
+        elif move.startswith("take".lower()):
+            player1.get_item(roomItems[move.split()[1]])
 
         else:
             print(f"\nYou can't go this way. Try going a different direction.")
 
-           
 # GAME START
 adventureGame()    
 #print(room['treasure'].items[0])
