@@ -6,15 +6,20 @@ class Player:
 
     #this lists all items in player inventory.
     def get_inventory(self): 
+        output = ""
+        i = 1
         for item in self.items:
-            return item
+            output += f"\n{i}. {item}"
+            i += 1
+        return output    
         # * maybe add incrementing numbers to this later
 
     def get_item(self, item):
         from item import Item
         
-        if item == item.name:
-            self.items.append(Item(item.name, item.description)) 
+        if item:
+            print(item)
+            self.items.append(item) 
             item.on_take()   
 
     def __str__(self):

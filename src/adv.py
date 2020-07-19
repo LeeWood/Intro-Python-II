@@ -2,6 +2,15 @@ from room import Room
 from player import Player
 from item import Item
 
+#items dictionary
+items = {
+    "note": Item("a note", "You assume it was left by the previous adventurers. The note reads: 'We may have taken this treasure, but if you can defeat the beast across the Grand Overlook you will be rewarded greatly.'"),
+
+    "plank": Item("a wooden plank", "A narrow but sturdy wooden plank."),
+
+    "talisman": Item("a Nazar amulet", "A blue and white eye shaped amulet said to protect against the evil eye.")
+}
+
 # Declare all the rooms
 
 room = {
@@ -20,18 +29,8 @@ to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", []),
+earlier adventurers. The only exit is to the south.""", [items["note"]]),
 }
-
-#items dictionary
-items = {
-    "note": Item("a note", "Left by the previous adventurers. The note reads: We may have taken this treasure, but if you can defeat the beast across the Grand Overlook you will be rewarded greatly."),
-
-    "plank": Item("a wooden plank", "A narrow but sturdy wooden plank."),
-
-    "talisman": Item("a Nazar amulet", "A blue and white eye shaped amulet thought to protect against the evil eye.")
-}
-
 
 # Link rooms together
 
@@ -94,6 +93,10 @@ def adventureGame():
             player1.current_room = player1.current_room.w_to
             print(f'\n{player1.current_room} \n')
 
+        elif move == "T":
+            player1.get_item(items["note"])
+               
+
         elif move == "I":
             print(f"\nInventory:\n{player1.get_inventory()}\n")        
 
@@ -107,4 +110,3 @@ def adventureGame():
            
 # GAME START
 adventureGame()    
-
