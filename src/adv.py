@@ -3,12 +3,12 @@ from player import Player
 from item import Item
 
 #items dictionary
-items = {
-    "note": Item("a note", "You assume it was left by the previous adventurers. The note reads: 'We may have taken this treasure, but if you can defeat the beast across the Grand Overlook you will be rewarded greatly.'"),
+roomItems = {
+    "note": Item("Note", "You assume it was left by the previous adventurers. The note reads: 'We may have taken this treasure, but if you can defeat the beast across the Grand Overlook you will be rewarded greatly.'"),
 
-    "plank": Item("a wooden plank", "A narrow but sturdy wooden plank."),
+    "plank": Item("Plank", "A narrow but extremely sturdy wooden plank. It's about 15 feet in length."),
 
-    "talisman": Item("a Nazar amulet", "A blue and white eye shaped amulet said to protect against the evil eye.")
+    "talisman": Item("Amulet", "A Nazar amulet. A blue and white eye shaped amulet. It's said to protect against the evil eye.")
 }
 
 # Declare all the rooms
@@ -29,7 +29,7 @@ to north. The smell of gold permeates the air.""", []),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", [items["note"]]),
+earlier adventurers. The only exit is to the south.""", [roomItems["note"]]),
 }
 
 # Link rooms together
@@ -50,11 +50,6 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 player1 = Player('Link', room['outside'], [Item("a journal page", "An old withered page from your great aunt's journal that reads:\n 'Seek gold in the northern caves'.")])
-
-#print(player1)
-
-#print(room['outside'].n_to)
-
 
 # Write a loop that:
 #
@@ -94,8 +89,7 @@ def adventureGame():
             print(f'\n{player1.current_room} \n')
 
         elif move == "T":
-            player1.get_item(items["note"])
-               
+            player1.get_item(roomItems["note"])
 
         elif move == "I":
             print(f"\nInventory:\n{player1.get_inventory()}\n")        
@@ -110,3 +104,4 @@ def adventureGame():
            
 # GAME START
 adventureGame()    
+#print(room['treasure'].items[0])

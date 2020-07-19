@@ -11,7 +11,7 @@ class Room:
             output += f'\n{i}. {item.name}. {item.description}'
             i += 1
         return output
-            
+ 
     def __str__(self):
         if len(self.items) > 0:
             return f'You are now in the {self.name}. {self.description} You look around and see: {self.listItems()}'
