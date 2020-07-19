@@ -4,11 +4,11 @@ from item import Item
 
 #items dictionary
 roomItems = {
-    "note": Item("Note", "You assume it was left by the previous adventurers. The note reads: 'We may have taken this treasure, but if you can defeat the beast across the Grand Overlook you will be rewarded greatly.'"),
+    "note": Item("A note", "You assume it was left by the previous adventurers. The note reads: 'We may have taken this treasure, but if you can defeat the beast across the Grand Overlook you will be rewarded greatly.'"),
 
-    "plank": Item("Plank", "A narrow but extremely sturdy wooden plank. It's about 15 feet in length."),
+    "ladder": Item("A ladder", "An old, but very sturdy 15 foot wooden ladder."),
 
-    "talisman": Item("Amulet", "A Nazar amulet. A blue and white eye shaped amulet. It's said to protect against the evil eye.")
+    "amulet": Item("An amulet", "A blue and white Nazar amulet shaped like an eye. It's said to protect against the evil eye.")
 }
 
 # Declare all the rooms
@@ -18,11 +18,11 @@ room = {
                      "North of you, the cave mount beckons", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", []),
+passages run north and east.""", [roomItems["ladder"]]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", []),
+the distance, but there is no way across the chasm.""", [roomItems["amulet"]]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air.""", []),
@@ -49,7 +49,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player1 = Player('Link', room['outside'], [Item("a journal page", "An old withered page from your great aunt's journal that reads:\n 'Seek gold in the northern caves'.")])
+player1 = Player('Link', room['outside'], [Item("A journal page", "An old withered page from your great aunt's journal that reads:\n 'Seek gold in the northern caves'.")])
 
 # Write a loop that:
 #
@@ -99,11 +99,13 @@ def adventureGame():
             break
 
         elif move.startswith("take".lower()):
-            player1.get_item(roomItems[move.split()[1]])
+            try:
+                player1.get_item(roomItems[move.split()[1]])
+            except KeyError:
+                print("that item is not in this area")    
 
         else:
             print(f"\nYou can't go this way. Try going a different direction.")
 
 # GAME START
-adventureGame()    
-#print(room['treasure'].items[0])
+adventureGame()

@@ -17,11 +17,9 @@ class Player:
     def get_item(self, item):
         from item import Item
 
-        if item:
-            #print(item)
-            self.current_room.items.remove(item)
-            self.items.append(item) 
-            item.on_take() 
+        self.current_room.items.remove(item)
+        self.items.append(item) 
+        item.on_take() 
             
     def __str__(self):
         return f'{self.name}, {self.current_room}'
