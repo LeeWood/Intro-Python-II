@@ -26,7 +26,26 @@ class Player:
     def drop_item(self, item):
         self.current_room.items.append(item)
         self.items.remove(item)
-        item.on_drop()        
+        item.on_drop()  
+
+    #checks if player has specific item in their inventory.
+    def has_item(self, item):
+        if item in self.items:
+            return True
+        else:
+            return False 
+
+    #lists all items in current room again.
+    def look(self):
+        if  len(self.current_room.items) > 0:
+            output = f"\nYou see:\n" 
+            i = 1
+            for item in self.current_room.items:
+                output += f"\n{i}. {item}"
+                i += 1
+            return output
+        else:
+            return f"\nThere's no items in this area.\n"                            
             
     def __str__(self):
         return f'{self.name}, {self.current_room}'
